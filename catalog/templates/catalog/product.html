@@ -1,0 +1,16 @@
+{% extends 'catalog/base.html' %}
+{% load custom_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <img src="{% mediapath object.preview %}" class="img-fluid" alt="...">
+        </div>
+        <div class="col-6">
+            <h1>{{ object.name }}</h1>
+            <p>{{ object.description }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
