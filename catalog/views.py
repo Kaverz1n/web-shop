@@ -56,7 +56,7 @@ def product(request, pk) -> HttpResponse:
     return render(request, 'catalog/product.html', {'object': product})
 
 
-def adminka(request) -> HttpResponse:
+def admin_panel(request) -> HttpResponse:
     '''
     Контролер для страницы админа интернет-магазина
     :return: HTTP-ответ с отображением шаблона "product.html"
@@ -74,4 +74,4 @@ def adminka(request) -> HttpResponse:
         except ValueError:
             pass
 
-    return render(request, 'catalog/adminka.html')
+    return render(request, 'catalog/admin_panel.html')
