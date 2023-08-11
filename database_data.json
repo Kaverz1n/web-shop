@@ -21,11 +21,11 @@
     "fields": {
       "name": "Интернет магазин",
       "description": "Описание",
-      "preview": "products_images/os.jpg",
+      "preview": "products_images/osk.png",
       "category": 1,
       "price": 15999,
-      "created_at": "2023-08-10T08:54:12.386Z",
-      "last_change": "2023-08-10T08:54:12.386Z"
+      "created_at": "2023-08-11T08:14:34.608Z",
+      "last_change": "2023-08-11T08:14:34.608Z"
     }
   },
   {
@@ -37,8 +37,8 @@
       "preview": "products_images/lg.jpg",
       "category": 2,
       "price": 5999,
-      "created_at": "2023-08-10T08:54:44.150Z",
-      "last_change": "2023-08-10T08:54:44.150Z"
+      "created_at": "2023-08-11T08:14:34.608Z",
+      "last_change": "2023-08-11T08:14:34.608Z"
     }
   },
   {
@@ -47,11 +47,11 @@
     "fields": {
       "name": "Создание сайта банка",
       "description": "ОПИСАНИЕ",
-      "preview": "products_images/os_9KaS9hf.jpg",
+      "preview": "products_images/osk_rP8VsSZ.png",
       "category": 1,
       "price": 100000,
-      "created_at": "2023-08-10T09:14:50.172Z",
-      "last_change": "2023-08-10T09:14:50.172Z"
+      "created_at": "2023-08-11T08:14:34.608Z",
+      "last_change": "2023-08-11T08:14:34.608Z"
     }
   },
   {
@@ -60,11 +60,11 @@
     "fields": {
       "name": "Создание сайта Кафе",
       "description": "ОПИСАНИЕ",
-      "preview": "products_images/os_IOFSGAk.jpg",
+      "preview": "products_images/osk_Hop6Daz.png",
       "category": 1,
       "price": 50000,
-      "created_at": "2023-08-10T09:15:08.762Z",
-      "last_change": "2023-08-10T09:15:08.762Z"
+      "created_at": "2023-08-11T08:14:34.608Z",
+      "last_change": "2023-08-11T08:14:34.608Z"
     }
   },
   {
@@ -73,11 +73,11 @@
     "fields": {
       "name": "Создание логотипа фрилансеру",
       "description": "ОПИСАНИЕ",
-      "preview": "products_images/lg_ZLTNVhL.jpg",
+      "preview": "products_images/lg_mIbRR4q.jpg",
       "category": 2,
       "price": 3500,
-      "created_at": "2023-08-10T09:15:27.821Z",
-      "last_change": "2023-08-10T09:15:27.821Z"
+      "created_at": "2023-08-11T08:14:34.608Z",
+      "last_change": "2023-08-11T08:14:34.608Z"
     }
   },
   {
@@ -86,11 +86,21 @@
     "fields": {
       "name": "Создание логотипа авиакомпании",
       "description": "ОПИСАНИЕ",
-      "preview": "products_images/lg_HSRHRJp.jpg",
+      "preview": "products_images/lg_kknxjYc.jpg",
       "category": 2,
       "price": 14000,
-      "created_at": "2023-08-10T09:15:51.820Z",
-      "last_change": "2023-08-10T09:15:51.820Z"
+      "created_at": "2023-08-11T08:14:34.608Z",
+      "last_change": "2023-08-11T08:14:34.608Z"
+    }
+  },
+  {
+    "model": "catalog.contactinf",
+    "pk": 1,
+    "fields": {
+      "fullname": "Каптан Дмитрий Алексеевич",
+      "email": "dima.captan@yandex.ru",
+      "phone": "899999999",
+      "address": "Адресс не указан"
     }
   }
 ]
