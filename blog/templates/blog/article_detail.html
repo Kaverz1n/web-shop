@@ -1,0 +1,23 @@
+{% extends 'catalog/base.html' %}
+{% load custom_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h1>{{ object.title }}</h1>
+            <div class="card">
+                <p>{{ object.body }}</p>
+            </div>
+        </div>
+        <div class="col-6 mt-5 ">
+            <br>
+            <img src="{% mediapath object.preview %}" class="img-fluid" height="2000" width="1333">
+            <div class="card mt-5">
+                <p>Дата публикации: <b>{{ object.created_at }}</b></p>
+                <p>Количество просмотров: <b>{{ object.views_counter }}</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

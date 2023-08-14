@@ -1,77 +1,61 @@
+from typing import Any
+
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
 
-from catalog.models import Product, ContactInf, Category
+from catalog.models import Product, ContactInf
 
 
-def index(request) -> HttpResponse:
+class ProductListView(ListView):
     '''
-    Контролер для главной страницы интернет-магазина
-    :return: HTTP-ответ с отображением шаблона "index.html"
+    Класс для отображения главной страницы каталога продуктов
     '''
-    last_five_products = Product.objects.order_by('-pk')[:5]
-    for product in last_five_products:
-        print(f'Товар {product.name} с ценой {product.price}р')
+    model = Product
 
-    products_list = Product.objects.all()
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Главная страница'
 
-    context = {
-        'object_list': products_list,
-        'title': 'Главная страница'
-    }
+        last_five_products = Product.objects.order_by('-pk')[:5]
+        for product in last_five_products:
+            print(f'Товар {product.name} с ценой {product.price}р')
 
-    return render(request, 'catalog/index.html', context)
+        return context
 
 
-def contacts(request) -> HttpResponse:
+class ProductDetailView(DetailView):
     '''
-    Контролер для страницы контакты интернет-магазина
-    :return: HTTP-ответ с отображением шаблона "contacts.html"
+    Класс для отображения страницы продукта
     '''
-    if request.method == 'POST':
-        data = {}
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
-
-        data['user_1'] = (name, email, message)
-        print(data)
-
-    inf_list = ContactInf.objects.all()
-
-    context = {
-        'object_list': inf_list,
-        'title': 'Контакты'
-    }
-
-    return render(request, 'catalog/contacts.html', context)
+    model = Product
 
 
-def product(request, pk) -> HttpResponse:
+class ProductCreateView(CreateView):
     '''
-    Контролер для страницы товара интернет-магазина
-    :return: HTTP-ответ с отображением шаблона "product.html"
+    Класс для создания нового продукта в интернет-магазине
     '''
-    product = get_object_or_404(Product, id=pk)
-    return render(request, 'catalog/product.html', {'object': product})
+    model = Product
+    fields = ('name', 'description', 'preview', 'category', 'price')
+    success_url = reverse_lazy('catalog:index')
 
 
-def admin_panel(request) -> HttpResponse:
+class ContactInfListView(ListView):
     '''
-    Контролер для страницы админа интернет-магазина
-    :return: HTTP-ответ с отображением шаблона "product.html"
+    Класс для отображения страницы контактов
     '''
-    if request.method == 'POST':
-        try:
+    model = ContactInf
+    extra_context = {'title': 'Контакты'}
+
+    def post(self, request) -> HttpResponse:
+        if request.method == 'POST':
+            data = {}
             name = request.POST.get('name')
-            description = request.POST.get('description')
-            price = int(request.POST.get('price'))
-            category_id = int(request.POST.get('category'))
-            category = Category.objects.get(pk=category_id)
-            product_inf = {'name': name, 'description': description, 'price': price}
+            email = request.POST.get('email')
+            message = request.POST.get('message')
 
-            Product.objects.create(category=category, **product_inf)
-        except ValueError:
-            pass
+            data['user_1'] = (name, email, message)
+            print(data)
 
-    return render(request, 'catalog/admin_panel.html')
+        return redirect('catalog:contacts')
