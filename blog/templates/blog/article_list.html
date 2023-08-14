@@ -1,0 +1,53 @@
+{% extends 'catalog/base.html' %}
+{% load custom_tags %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-5"></div>
+        <div class="col-5">
+            <h1>ВСЕ СТАТЬИ</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <a class="btn btn-success" href="{% url 'blog:create' %}">ДОБАВИТЬ СТАТЬЮ</a>
+        </div>
+    </div>
+</div>
+<div class="container ">
+    {% for object in object_list %}
+    <div class="row">
+        <div class="card mb-3 mt-3" style="max-width: 1500px;">
+            <div class="row g-0">
+                <div class="col-md-3">
+                    <img src="{{ object.preview|mediapath }}" class="img-fluid rounded-start p-2" alt="...">
+                </div>
+                <div class="col-9">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ object.title|upper }}</h5>
+                        <p class="card-text">
+                            {{ object.body|slice:"500" }}...
+                            <a href="{% url 'blog:article' object.pk %}">читать далее...</a>
+                        </p>
+                        <p><b>Дата публикации: </b>{{ object.created_at }}</p>
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-9"></div>
+                    <div class="col-2">
+                        <a class="btn btn-info" href="{% url 'blog:update' object.pk %}">ОБНОВИТЬ</a>
+                    </div>
+                    <div class="col-1">
+                        <a class = "btn btn-danger" href="{% url 'blog:delete' object.pk %}">УДАЛИТЬ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
