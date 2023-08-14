@@ -1,5 +1,6 @@
 from typing import Any
 
+from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
@@ -47,7 +48,7 @@ class ContactInfListView(ListView):
     model = ContactInf
     extra_context = {'title': 'Контакты'}
 
-    def post(self, request):
+    def post(self, request) -> HttpResponse:
         if request.method == 'POST':
             data = {}
             name = request.POST.get('name')
