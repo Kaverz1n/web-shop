@@ -12,6 +12,9 @@
             <p>{{ object.description }}</p>
             <p>Цена: <b>{{ object.price }} руб.</b></p>
             <p>Дата публикации: <b>{{ object.created_at }}</b></p>
+            {% if version %}
+                <p>Название версии: <b>{{ version.name }}</b></p>
+            {% endif %}
         </div>
     </div>
 </div>
