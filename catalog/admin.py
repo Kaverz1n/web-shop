@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from catalog.models import Category, Product, ContactInf
+from catalog.models import Category, Product, ContactInf, Version
 
 
 # Register your models here.
@@ -19,6 +19,13 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(ContactInf)
-class ContactInfAdmib(admin.ModelAdmin):
+class ContactInfAdmin(admin.ModelAdmin):
     list_display = ('pk', 'fullname', 'email', 'phone', 'address')
     ordering = ('pk',)
+
+
+@admin.register(Version)
+class VersionAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'product', 'number', 'name', 'is_current',)
+    ordering = ('pk',)
+    list_filter = ('product', 'is_current',)

@@ -1,24 +1,53 @@
 {% extends 'catalog/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="row">
         <div class="col-4"></div>
         <div class="col-5">
-            <h1>ЗАПОЛНЕНИЕ ТОВАРА</h1>
+            <h1 class="text-center">ЗАПОЛНЕНИЕ ТОВАРА</h1>
         </div>
     </div>
 </div>
 <div class="container mt-4">
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <form class='card p-3 bg-white' method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary mt-5">ДОБАВИТЬ ТОВАР</button>
-            </form>
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            {% if not object %}
+            <div class="col-4"></div>
+            {% endif %}
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-title">Продукт</div>
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+
+                        {% if object %}
+                            <button type="submit" class="btn btn-primary mt-5">ОБНОВИТЬ ТОВАР</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-primary mt-5">ДОБАВИТЬ ТОВАР</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                {% if object %}
+                    <div class="card">
+                        <div class="card-title">Версия</div>
+                        <div class="card-body">
+                            {{ formset.management_form }}
+                            {% for form in formset.forms %}
+                            {{ form|crispy}}
+                            {% if not forloop.last %}
+                                <hr>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 {% endblock %}

@@ -8,16 +8,48 @@
 <div class="container">
     <div class="row">
         {% for object in object_list %}
-        <div class="col-3 mt-3">
-            <div class="card" style="width: 18rem;">
-                <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <h5 class="card-title">{{ object.name|upper }}</h5>
-                    <p class="card-text">{{ object.description|slice:":100" }}...</p>
-                    <a href="{% url 'catalog:product' object.pk %}" class="btn btn-success">ПЕРЕЙТИ</a>
+            {% if object.version_set.all %}
+                {% for version in object.version_set.all %}
+                    <div class="col-3 mt-3">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
+                            <div class="card-body bg-light">
+                                <h5 class="card-title">{{ object.name|upper }}</h5>
+                                <p class="card-text">{{ object.description|slice:":100" }}...</p>
+                                <a href="{% url 'catalog:product_detail' object.pk version.pk%}" class="btn btn-success">ПЕРЕЙТИ</a>
+                                <hr>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <p><b>версия</b>: {{ version.number }}</p>
+                                    {% if version.is_current %}
+                                        <p class="text-success">ПОСЛЕДНЯЯ</p>
+                                    {% endif %}
+                                </div>
+                                <hr>
+                                <a href="{% url 'catalog:product_update' object.pk %}"
+                                   class="btn btn-outline-primary">Обновить</a>
+                                <a href="{% url 'catalog:product_delete' object.pk %}"
+                                   class="btn btn-outline-danger">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-3 mt-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
+                        <div class="card-body bg-light">
+                            <h5 class="card-title">{{ object.name|upper }}</h5>
+                            <p class="card-text">{{ object.description|slice:":100" }}...</p>
+                            <a href="{% url 'catalog:product_detail' object.pk 0 %}" class="btn btn-success">ПЕРЕЙТИ</a>
+                            <hr>
+                            <a href="{% url 'catalog:product_update' object.pk %}"
+                               class="btn btn-outline-primary">Обновить</a>
+                            <a href="{% url 'catalog:product_delete' object.pk %}"
+                               class="btn btn-outline-danger">Удалить</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            {% endif %}
         {% endfor %}
     </div>
 </div>

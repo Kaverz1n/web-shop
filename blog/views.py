@@ -7,6 +7,7 @@ from django.views.generic import (
 from pytils.translit import slugify
 
 from blog.models import Article
+from blog.utils import send_email_100_view
 
 
 class ArticleListView(ListView):
@@ -33,6 +34,9 @@ class ArticleDetailView(DetailView):
         self.object = super().get_object(queryset)
         self.object.views_counter += 1
         self.object.save()
+
+        if self.object.views_counter == 100:
+            send_email_100_view('email@yandex.ru', self.object.title)
 
         return self.object
 
