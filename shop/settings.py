@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'catalog',
     'blog'
 ]
@@ -76,7 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'shop',
-        'USER': 'postgres'
+        'USER': 'postgres',
+        'PASSWORD': 'Erdjlmnxz13!'
     }
 }
 
@@ -114,7 +117,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -123,3 +125,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# crispy-forms settings
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# sending-email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
+EMAIL_HOST_USER = 'dima.captan@yandex.ru'
+EMAIL_HOST_PASSWORD = 'byilyhjcmwuwobrr'
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
