@@ -1,0 +1,13 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h1>Ошибка! Ваш e-mail адрес не подтвержден! Попробуйте попытку позже</h1>
+            <a class="btn btn-success" href="{% url 'users:register' %}">Регистрация</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

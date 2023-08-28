@@ -16,10 +16,10 @@
             {% if not object %}
             <div class="col-4"></div>
             {% endif %}
-            <div class="col-6">
+            <div class="col-5">
                 <div class="card">
-                    <div class="card-title">Продукт</div>
-                    <div class="card-body">
+                    <div class="card-title p-3"><h5>Продукт</h5></div>
+                    <div class="card-body mb-2">
                         {% csrf_token %}
                         {{ form|crispy }}
 
@@ -34,7 +34,7 @@
             <div class="col-6">
                 {% if object %}
                     <div class="card">
-                        <div class="card-title">Версия</div>
+                        <div class="card-title p-3"><h5>Версия</h5></div>
                         <div class="card-body">
                             {{ formset.management_form }}
                             {% for form in formset.forms %}

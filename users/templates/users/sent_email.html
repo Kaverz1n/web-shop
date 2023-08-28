@@ -1,0 +1,13 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h1>На вашу почту было отправлено письмо с подтверждением!</h1>
+            <a class="btn btn-success" href="{% url 'catalog:index' %}">На главную</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
