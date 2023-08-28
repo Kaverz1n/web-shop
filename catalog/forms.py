@@ -13,7 +13,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        exclude = ('created_at', 'last_change',)
+        exclude = ('created_at', 'last_change', 'user')
 
     def __clean_inappropriate_words(self, cleaned_data):
         for word in WRONG_WORDS:
@@ -38,31 +38,22 @@ class VersionForm(forms.ModelForm):
     Форма для создания версии продукта
     '''
     CURRENT_COUNTER = 0
-    OBJECT_COUNTER = 0
 
     class Meta:
         model = Version
         fields = '__all__'
 
-    def clean_is_current(self):
-        cleaned_data = self.cleaned_data['is_current']
-        objects = len(Version.objects.filter(product=self.instance.product))
-        VersionForm.OBJECT_COUNTER += 1
-        error = False
+    def clean(self):
+        cleaned_data = super().clean()
+        clean_is_current = cleaned_data['is_current']
 
-        # проверяет, что форма имеет активную версию, для инкрементирования счётчика активных версий
-        if cleaned_data:
+        if cleaned_data['number'] == 1:
+            VersionForm.CURRENT_COUNTER = 0
+
+        if clean_is_current:
             VersionForm.CURRENT_COUNTER += 1
 
-        # проверяет, что активных версий больше 1
         if VersionForm.CURRENT_COUNTER > 1:
-            error = True
-
-        # проверяет, что форма объекта является последней для обнуления счётчика активных версий
-        if objects == VersionForm.OBJECT_COUNTER:
-            VersionForm.OBJECT_COUNTER, VersionForm.CURRENT_COUNTER = 0, 0
-
-        if error:
             raise forms.ValidationError('У продукта может быть лишь одна активная версия')
 
         return cleaned_data
