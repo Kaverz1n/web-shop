@@ -1,5 +1,8 @@
 from django.db import models
 
+from blog.models import NULLABLE
+from users.models import User
+
 
 # Create your models here.
 class Category(models.Model):
@@ -29,6 +32,7 @@ class Product(models.Model):
     price = models.PositiveIntegerField(verbose_name='Цена')
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True, verbose_name='Дата создания')
     last_change = models.DateTimeField(auto_now=True, auto_now_add=False, verbose_name='Дата последнего изменения')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Продавец', **NULLABLE)
 
     def __str__(self):
         return f'{self.name}'
