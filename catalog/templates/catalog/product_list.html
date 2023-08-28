@@ -14,7 +14,7 @@
                         <div class="card" style="width: 18rem;">
                             <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
                             <div class="card-body bg-light">
-                                <h5 class="card-title">{{ object.name|upper }}</h5>
+                                <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
                                 <p class="card-text">{{ object.description|slice:":100" }}...</p>
                                 <a href="{% url 'catalog:product_detail' object.pk version.pk%}" class="btn btn-success">ПЕРЕЙТИ</a>
                                 <hr>
@@ -24,11 +24,13 @@
                                         <p class="text-success">ПОСЛЕДНЯЯ</p>
                                     {% endif %}
                                 </div>
-                                <hr>
-                                <a href="{% url 'catalog:product_update' object.pk %}"
-                                   class="btn btn-outline-primary">Обновить</a>
-                                <a href="{% url 'catalog:product_delete' object.pk %}"
-                                   class="btn btn-outline-danger">Удалить</a>
+                                {% if user.is_authenticated %}
+                                    <hr>
+                                    <a href="{% url 'catalog:product_update' object.pk %}"
+                                       class="btn btn-outline-primary">Обновить</a>
+                                    <a href="{% url 'catalog:product_delete' object.pk %}"
+                                       class="btn btn-outline-danger">Удалить</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -38,14 +40,16 @@
                     <div class="card" style="width: 18rem;">
                         <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
                         <div class="card-body bg-light">
-                            <h5 class="card-title">{{ object.name|upper }}</h5>
+                            <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
                             <p class="card-text">{{ object.description|slice:":100" }}...</p>
                             <a href="{% url 'catalog:product_detail' object.pk 0 %}" class="btn btn-success">ПЕРЕЙТИ</a>
-                            <hr>
-                            <a href="{% url 'catalog:product_update' object.pk %}"
-                               class="btn btn-outline-primary">Обновить</a>
-                            <a href="{% url 'catalog:product_delete' object.pk %}"
-                               class="btn btn-outline-danger">Удалить</a>
+                            {% if user.is_authenticated %}
+                                <hr>
+                                <a href="{% url 'catalog:product_update' object.pk %}"
+                                   class="btn btn-outline-primary">Обновить</a>
+                                <a href="{% url 'catalog:product_delete' object.pk %}"
+                                   class="btn btn-outline-danger">Удалить</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
