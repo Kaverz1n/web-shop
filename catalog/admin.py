@@ -12,15 +12,15 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'price', 'category')
+    list_display = ('pk', 'name', 'price', 'category', 'is_published',)
     list_filter = ('category',)
-    search_fields = ('name', 'description')
+    search_fields = ('name', 'description',)
     ordering = ('pk',)
 
 
 @admin.register(ContactInf)
 class ContactInfAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'fullname', 'email', 'phone', 'address')
+    list_display = ('pk', 'fullname', 'email', 'phone', 'address',)
     ordering = ('pk',)
 
 
