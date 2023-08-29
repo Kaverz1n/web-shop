@@ -14,28 +14,35 @@
                             <a class="nav-link active" aria-current="page"
                                href="{% url 'catalog:index' %}">Главная</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'catalog:contacts' %}">Контакты</a>
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="{% url 'catalog:contacts' %}">Контакты</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'blog:view' %}">Блог</a>
+                            <a class="nav-link active" href="{% url 'blog:view' %}">Блог</a>
                         </li>
                         {% if not user.is_authenticated %}
-                            <li class="nav-item">
-                                <a class="nav-link text-black-50" href="{% url 'users:register' %}">Создать аккаунт</a>
+                            <li class="nav-item ms-5">
+                                <a class="nav-link active" href="{% url 'users:register' %}">Создать аккаунт</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-black-50" href="{% url 'users:login' %}">Войти</a>
+                                <a class="nav-link active" href="{% url 'users:login' %}">Войти</a>
                             </li>
                         {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link text-black-50" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
+                        {% if perms.catalog.add_product %}
+                            <li class="nav-item ms-5">
+                                <a class="nav-link active" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
                             </li>
+                        {% endif %}
+                        {% if perms.catalog.check_products %}
                             <li class="nav-item">
-                                <a class="nav-link text-black-50" href="{% url 'users:profile' %}">Профиль</a>
+                                <a class="nav-link active" href="{% url 'catalog:myproducts' %}">Мои продукты</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-black-50" href="{% url 'users:logout' %}">Выйти</a>
+                        {% endif %}
+                            <li class="nav-item ms-5 ">
+                                <a class="nav-link active" href="{% url 'users:profile' %}">Профиль</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="{% url 'users:logout' %}">Выйти</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -47,4 +54,5 @@
             </div>
         </nav>
     </div>
+    <hr>
 </div>
