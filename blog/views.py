@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import QuerySet
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
@@ -23,6 +24,11 @@ class ArticleListView(ListView):
 
         return queryset
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Статьи'
+        return context
+
 
 class ArticleDetailView(DetailView):
     '''
@@ -40,8 +46,13 @@ class ArticleDetailView(DetailView):
 
         return self.object
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Статья {self.object.title}'
+        return context
 
-class ArticleCreateView(CreateView):
+
+class ArticleCreateView(LoginRequiredMixin, CreateView):
     '''
     Класс для отображения страницы создания статьи
     '''
@@ -57,8 +68,13 @@ class ArticleCreateView(CreateView):
 
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Создание статьи'
+        return context
 
-class ArticleUpdateView(UpdateView):
+
+class ArticleUpdateView(LoginRequiredMixin, UpdateView):
     '''
     Класс для отображения страницы обновления статьи
     '''
@@ -76,10 +92,20 @@ class ArticleUpdateView(UpdateView):
     def get_success_url(self) -> HttpResponse:
         return reverse('blog:article', args=[self.kwargs.get('pk')])
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Редактирование статьи {self.object.title}'
+        return context
 
-class ArticleDeleteView(DeleteView):
+
+class ArticleDeleteView(LoginRequiredMixin, DeleteView):
     '''
     Класс для отображения страницы удаления статьи
     '''
     model = Article
     success_url = reverse_lazy('blog:view')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Удаление статьи {self.object.title}'
+        return context
