@@ -1,0 +1,68 @@
+{% extends 'catalog/base.html' %}
+{% load custom_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for object in object_list %}
+            {% if not object.is_published %}
+                <div class="col-3 mt-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
+                        <div class="card-body bg-light">
+                            <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
+                            <p class="card-text text-muted">{{ object.description|slice:":100" }}...</p>
+                            <p>СТАТУС: <b class="text-danger">НА ПРОВЕРКЕ</b></p>
+                            <hr>
+                            <a href="{% url 'catalog:product_update' object.pk %}"
+                               class="btn btn-outline-primary">Редактировать</a>
+                            <a href="{% url 'catalog:product_delete' object.pk %}"
+                               class="btn btn-outline-danger">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        <hr class="mt-5">
+        {% for object in object_list %}
+            {% if object.is_published %}
+                {% if object.version_set.all %}
+                    {% for version in object.version_set.all %}
+                        <div class="col-3 mt-3">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
+                                <div class="card-body bg-light">
+                                    <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
+                                    <p class="card-text">{{ object.description|slice:":100" }}...</p>
+                                    <p>СТАТУС: <b class="text-success">ОПУБЛИКОВАННО!</b></p>
+                                    <a href="{% url 'catalog:product_detail' object.pk version.pk%}" class="btn btn-success">ПЕРЕЙТИ</a>
+                                    <hr>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <p><b>версия</b>: {{ version.number }}</p>
+                                        {% if version.is_current %}
+                                        <p class="text-success">ПОСЛЕДНЯЯ</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-3 mt-3">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
+                            <div class="card-body bg-light">
+                                <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
+                                <p class="card-text">{{ object.description|slice:":100" }}...</p>
+                                <a href="{% url 'catalog:product_detail' object.pk 0 %}" class="btn btn-success">ПЕРЕЙТИ</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
