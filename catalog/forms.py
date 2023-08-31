@@ -13,7 +13,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        exclude = ('created_at', 'last_change', 'user')
+        exclude = ('created_at', 'last_change', 'user', 'is_published')
 
     def __clean_inappropriate_words(self, cleaned_data):
         for word in WRONG_WORDS:
@@ -57,3 +57,14 @@ class VersionForm(forms.ModelForm):
             raise forms.ValidationError('У продукта может быть лишь одна активная версия')
 
         return cleaned_data
+
+
+class ModeratorProductForm(ProductForm):
+    '''
+    форма для создания и редактирования товара
+    '''
+
+    class Meta:
+        model = Product
+        fields = ('description', 'category', 'is_published')
+

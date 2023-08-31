@@ -1,5 +1,6 @@
 {% extends 'catalog/base.html' %}
 {% load crispy_forms_tags %}
+{% load custom_tags %}
 
 {% block content %}
 <div class="container mt-4">
@@ -13,12 +14,14 @@
 <div class="container mt-4">
     <form method="post" enctype="multipart/form-data">
         <div class="row">
-            {% if not object %}
-            <div class="col-4"></div>
+            {% if not object or user|has_group:"product_moderator" %}
+                <div class="col-4"></div>
             {% endif %}
             <div class="col-5">
                 <div class="card">
-                    <div class="card-title p-3"><h5>Продукт</h5></div>
+                    {% if user|has_group:"product_moderator" %}
+                        <div class="card-title p-3"><h5>{{ object.name }}</h5></div>
+                    {% endif %}
                     <div class="card-body mb-2">
                         {% csrf_token %}
                         {{ form|crispy }}
@@ -32,7 +35,7 @@
                 </div>
             </div>
             <div class="col-6">
-                {% if object %}
+                {% if object and not user|has_group:"product_moderator" %}
                     <div class="card">
                         <div class="card-title p-3"><h5>Версия</h5></div>
                         <div class="card-body">

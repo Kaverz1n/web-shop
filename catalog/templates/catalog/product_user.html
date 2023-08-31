@@ -2,37 +2,30 @@
 {% load custom_tags %}
 
 {% block content %}
-<div class="row">
-    <h2 class="text-center mt-3 mb-5">MRROBOT!</h2>
-</div>
 <div class="container">
     <div class="row">
-        {% if user|has_group:"product_moderator" %}
-            <h1 class="text-center">НА МОДЕРАЦИИ</h1>
-            <div class="container">
-                <div class="row">
-                    {% for object in object_list %}
-                        {% if not object.is_published and user|has_group:"product_moderator" %}
-                            <div class="col-3 mt-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
-                                    <div class="card-body bg-light">
-                                        <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
-                                        <p class="card-text text-muted">{{ object.description|slice:":100" }}...</p>
-                                        <hr>
-                                        <a href="{% url 'catalog:product_update' object.pk %}"
-                                           class="btn btn-outline-primary">Просмотреть</a>
-                                        <a href="{% url 'catalog:product_delete' object.pk %}"
-                                       class="btn btn-outline-danger">Удалить</a>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+        {% for object in object_list %}
+            {% if not object.is_published %}
+                <div class="col-3 mt-3">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ object.preview|mediapath }}" class="card-img-top" alt="...">
+                        <div class="card-body bg-light">
+                            <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
+                            <p class="card-text text-muted">{{ object.description|slice:":100" }}...</p>
+                            <p>СТАТУС: <b class="text-danger">НА ПРОВЕРКЕ</b></p>
+                            <hr>
+                            <a href="{% url 'catalog:product_update' object.pk %}"
+                               class="btn btn-outline-primary">Редактировать</a>
+                            <a href="{% url 'catalog:product_delete' object.pk %}"
+                               class="btn btn-outline-danger">Удалить</a>
+                        </div>
+                    </div>
                 </div>
-                <h1 class="text-center mt-5">АКТИВНЫЕ</h1>
-            </div>
-        {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        <hr class="mt-5">
         {% for object in object_list %}
             {% if object.is_published %}
                 {% if object.version_set.all %}
@@ -43,6 +36,7 @@
                                 <div class="card-body bg-light">
                                     <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
                                     <p class="card-text">{{ object.description|slice:":100" }}...</p>
+                                    <p>СТАТУС: <b class="text-success">ОПУБЛИКОВАННО!</b></p>
                                     <a href="{% url 'catalog:product_detail' object.pk version.pk%}" class="btn btn-success">ПЕРЕЙТИ</a>
                                     <hr>
                                     <div style="display: flex; justify-content: space-between;">
