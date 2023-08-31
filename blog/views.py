@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db.models import QuerySet
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
@@ -7,6 +7,7 @@ from django.views.generic import (
 )
 from pytils.translit import slugify
 
+from blog.forms import ArticleForm
 from blog.models import Article
 from blog.utils import send_email_100_view
 
@@ -17,12 +18,6 @@ class ArticleListView(ListView):
     '''
     model = Article
     ordering = ('created_at',)
-
-    def get_queryset(self, *args, **kwargs) -> QuerySet[Article]:
-        queryset = super().get_queryset(*args, **kwargs)
-        queryset = queryset.filter(is_published=True)
-
-        return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -52,12 +47,13 @@ class ArticleDetailView(DetailView):
         return context
 
 
-class ArticleCreateView(LoginRequiredMixin, CreateView):
+class ArticleCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     '''
     Класс для отображения страницы создания статьи
     '''
     model = Article
-    fields = ('title', 'body', 'preview')
+    form_class = ArticleForm
+    permission_required = 'blog.add_article'
     success_url = reverse_lazy('blog:view')
 
     def form_valid(self, form) -> HttpResponse:
@@ -74,12 +70,13 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class ArticleUpdateView(LoginRequiredMixin, UpdateView):
+class ArticleUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     '''
     Класс для отображения страницы обновления статьи
     '''
     model = Article
-    fields = ('title', 'body', 'preview')
+    permission_required = 'blog.add_article'
+    form_class = ArticleForm
 
     def form_valid(self, form) -> HttpResponse:
         if form.is_valid():
@@ -98,11 +95,12 @@ class ArticleUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
 
-class ArticleDeleteView(LoginRequiredMixin, DeleteView):
+class ArticleDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     '''
     Класс для отображения страницы удаления статьи
     '''
     model = Article
+    permission_required = 'blog.add_article'
     success_url = reverse_lazy('blog:view')
 
     def get_context_data(self, **kwargs):
