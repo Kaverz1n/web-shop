@@ -33,6 +33,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True, verbose_name='Дата создания')
     last_change = models.DateTimeField(auto_now=True, auto_now_add=False, verbose_name='Дата последнего изменения')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Продавец', **NULLABLE)
+    is_published = models.BooleanField(default=False, verbose_name='Статус публикации')
 
     def __str__(self):
         return f'{self.name}'
@@ -40,6 +41,26 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
+
+        permissions = [
+            (
+                'set_published',
+                'Can publish products',
+            ),
+            (
+                'change_description',
+                'Can change product description',
+            ),
+            (
+                'change_category',
+                'Can change product category',
+            ),
+            (
+                'check_products',
+                'Can watch their own products',
+            )
+
+        ]
 
 
 class ContactInf(models.Model):

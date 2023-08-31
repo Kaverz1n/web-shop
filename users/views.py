@@ -1,6 +1,8 @@
 import random
 
 from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import Permission
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
@@ -42,6 +44,11 @@ class RegisterView(CreateView):
 
             return redirect('users:sent_email')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Регистрация'
+        return context
+
 
 class UserConfirmEmailView(View):
     def get(self, request, uidb64, token):
@@ -52,6 +59,9 @@ class UserConfirmEmailView(View):
             user = None
 
         if user is not None and default_token_generator.check_token(user, token):
+            permission1 = Permission.objects.get(codename='add_product', content_type__app_label='catalog')
+            permission2 = Permission.objects.get(codename='check_products', content_type__app_label='catalog')
+            user.user_permissions.add(permission1, permission2)
             user.is_active = True
             user.save()
             login(request, user)
@@ -112,7 +122,7 @@ def get_new_password(request):
     return render(request, 'users/password_reset.html', {'form': form, 'title': 'Восстановление пароля'})
 
 
-class UserProfileUpdateView(UpdateView):
+class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = ProfileUpdateForm
     template_name = 'users/profile.html'
@@ -120,3 +130,8 @@ class UserProfileUpdateView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Профиль {self.request.user.email}'
+        return context
