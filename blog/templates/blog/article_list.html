@@ -36,7 +36,7 @@
                                     <h5 class="card-title text-muted">{{ object.title|upper }}</h5>
                                     <p class="card-text text-muted">
                                         {{ object.body|slice:"500" }}...
-                                        <a class="text-muted" href="{% url 'blog:article' object.pk %}">читать далее...</a>
+                                        <a class="text-muted" href="{% url 'blog:article' object.pk %}">читать далее</a>
                                     </p>
                                     <p class="text-muted"><b>Дата публикации: </b>{{ object.created_at }}</p>
                                 </div>
@@ -71,7 +71,7 @@
                                 <h5 class="card-title">{{ object.title|upper }}</h5>
                                 <p class="card-text">
                                     {{ object.body|slice:"500" }}...
-                                    <a href="{% url 'blog:article' object.pk %}">читать далее...</a>
+                                    <a href="{% url 'blog:article' object.pk %}">читать далее</a>
                                 </p>
                                 <p><b>Дата публикации: </b>{{ object.created_at }}</p>
                             </div>
