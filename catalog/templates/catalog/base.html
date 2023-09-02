@@ -37,13 +37,9 @@
                 </a>
             </div>
         </section>
-
         <div class="container text-center text-md-start mt-5">
-
             <div class="row mt-3">
-
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-
                     <h6 class="text-uppercase fw-bold mb-4">
                         <i class="fas fa-gem me-3 text-secondary"></i>MRROBOT
                     </h6>
@@ -52,9 +48,7 @@
                         дизайны логотипов и мобильные приложения.
                     </p>
                 </div>
-
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
                     <h6 class="text-uppercase fw-bold mb-4">
                         Магазин
                     </h6>
@@ -64,13 +58,38 @@
                     <p>
                         <a href="{% url 'catalog:contacts' %}" class="text-reset">Контакты</a>
                     </p>
-
+                    <p>
+                        <a href="{% url 'blog:view' %}" class="text-reset">Блог</a>
+                    </p>
+                    {% if not user.is_authenticated %}
+                        <p>
+                            <a href="{% url 'users:register' %}" class="text-reset">Создать аккаунт</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'users:login' %}" class="text-reset">Войти</a>
+                        </p>
+                    {% else %}
+                        {% if perms.catalog.add_product %}
+                            <p>
+                                <a href="{% url 'catalog:product_create' %}" class="text-reset">Добавить продукт</a>
+                            </p>
+                        {% endif %}
+                        {% if perms.catalog.check_products %}
+                            <p>
+                                <a href="{% url 'catalog:myproducts' %}" class="text-reset">Мои продукты</a>
+                            </p>
+                        {% endif %}
+                        <p>
+                            <a href="{% url 'users:profile' %}" class="text-reset">Профиль</a>
+                        </p>
+                        <p>
+                            <a href="{% url 'users:logout' %}" class="text-reset">Выйти</a>
+                        </p>
+                    {% endif %}
                 </div>
-
             </div>
-
             <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
-                © 2021 Copyright:
+                ©
                 <a class="text-reset fw-bold" href="/">MRROBOT</a>
             </div>
         </div>

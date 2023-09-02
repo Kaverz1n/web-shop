@@ -69,7 +69,7 @@ class ContactInf(models.Model):
     '''
     fullname = models.CharField(max_length=100, verbose_name='ФИО')
     email = models.EmailField(max_length=254, verbose_name='E-mail')
-    phone = models.CharField(max_length=10, verbose_name='Телефон')
+    phone = models.CharField(max_length=35, verbose_name='Телефон')
     address = models.TextField(verbose_name='Адрес')
 
     def __str__(self):
