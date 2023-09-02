@@ -1,609 +1,5 @@
 [
   {
-    "model": "auth.permission",
-    "pk": 1,
-    "fields": {
-      "name": "Can add log entry",
-      "content_type": 1,
-      "codename": "add_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 2,
-    "fields": {
-      "name": "Can change log entry",
-      "content_type": 1,
-      "codename": "change_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 3,
-    "fields": {
-      "name": "Can delete log entry",
-      "content_type": 1,
-      "codename": "delete_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 4,
-    "fields": {
-      "name": "Can view log entry",
-      "content_type": 1,
-      "codename": "view_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 5,
-    "fields": {
-      "name": "Can add permission",
-      "content_type": 2,
-      "codename": "add_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 6,
-    "fields": {
-      "name": "Can change permission",
-      "content_type": 2,
-      "codename": "change_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 7,
-    "fields": {
-      "name": "Can delete permission",
-      "content_type": 2,
-      "codename": "delete_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 8,
-    "fields": {
-      "name": "Can view permission",
-      "content_type": 2,
-      "codename": "view_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 9,
-    "fields": {
-      "name": "Can add group",
-      "content_type": 3,
-      "codename": "add_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 10,
-    "fields": {
-      "name": "Can change group",
-      "content_type": 3,
-      "codename": "change_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 11,
-    "fields": {
-      "name": "Can delete group",
-      "content_type": 3,
-      "codename": "delete_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 12,
-    "fields": {
-      "name": "Can view group",
-      "content_type": 3,
-      "codename": "view_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 13,
-    "fields": {
-      "name": "Can add content type",
-      "content_type": 4,
-      "codename": "add_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 14,
-    "fields": {
-      "name": "Can change content type",
-      "content_type": 4,
-      "codename": "change_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 15,
-    "fields": {
-      "name": "Can delete content type",
-      "content_type": 4,
-      "codename": "delete_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 16,
-    "fields": {
-      "name": "Can view content type",
-      "content_type": 4,
-      "codename": "view_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 17,
-    "fields": {
-      "name": "Can add session",
-      "content_type": 5,
-      "codename": "add_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 18,
-    "fields": {
-      "name": "Can change session",
-      "content_type": 5,
-      "codename": "change_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 19,
-    "fields": {
-      "name": "Can delete session",
-      "content_type": 5,
-      "codename": "delete_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 20,
-    "fields": {
-      "name": "Can view session",
-      "content_type": 5,
-      "codename": "view_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 21,
-    "fields": {
-      "name": "Can add Категория",
-      "content_type": 6,
-      "codename": "add_category"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 22,
-    "fields": {
-      "name": "Can change Категория",
-      "content_type": 6,
-      "codename": "change_category"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 23,
-    "fields": {
-      "name": "Can delete Категория",
-      "content_type": 6,
-      "codename": "delete_category"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 24,
-    "fields": {
-      "name": "Can view Категория",
-      "content_type": 6,
-      "codename": "view_category"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 25,
-    "fields": {
-      "name": "Can add Товар",
-      "content_type": 7,
-      "codename": "add_product"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 26,
-    "fields": {
-      "name": "Can change Товар",
-      "content_type": 7,
-      "codename": "change_product"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 27,
-    "fields": {
-      "name": "Can delete Товар",
-      "content_type": 7,
-      "codename": "delete_product"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 28,
-    "fields": {
-      "name": "Can view Товар",
-      "content_type": 7,
-      "codename": "view_product"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 29,
-    "fields": {
-      "name": "Can add Контактная информация",
-      "content_type": 8,
-      "codename": "add_contactinf"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 30,
-    "fields": {
-      "name": "Can change Контактная информация",
-      "content_type": 8,
-      "codename": "change_contactinf"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 31,
-    "fields": {
-      "name": "Can delete Контактная информация",
-      "content_type": 8,
-      "codename": "delete_contactinf"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 32,
-    "fields": {
-      "name": "Can view Контактная информация",
-      "content_type": 8,
-      "codename": "view_contactinf"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 33,
-    "fields": {
-      "name": "Can add Версия продукта",
-      "content_type": 9,
-      "codename": "add_version"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 34,
-    "fields": {
-      "name": "Can change Версия продукта",
-      "content_type": 9,
-      "codename": "change_version"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 35,
-    "fields": {
-      "name": "Can delete Версия продукта",
-      "content_type": 9,
-      "codename": "delete_version"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 36,
-    "fields": {
-      "name": "Can view Версия продукта",
-      "content_type": 9,
-      "codename": "view_version"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 37,
-    "fields": {
-      "name": "Can add статья",
-      "content_type": 10,
-      "codename": "add_article"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 38,
-    "fields": {
-      "name": "Can change статья",
-      "content_type": 10,
-      "codename": "change_article"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 39,
-    "fields": {
-      "name": "Can delete статья",
-      "content_type": 10,
-      "codename": "delete_article"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 40,
-    "fields": {
-      "name": "Can view статья",
-      "content_type": 10,
-      "codename": "view_article"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 41,
-    "fields": {
-      "name": "Can add user",
-      "content_type": 11,
-      "codename": "add_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 42,
-    "fields": {
-      "name": "Can change user",
-      "content_type": 11,
-      "codename": "change_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 43,
-    "fields": {
-      "name": "Can delete user",
-      "content_type": 11,
-      "codename": "delete_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 44,
-    "fields": {
-      "name": "Can view user",
-      "content_type": 11,
-      "codename": "view_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 45,
-    "fields": {
-      "name": "Can add site",
-      "content_type": 12,
-      "codename": "add_site"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 46,
-    "fields": {
-      "name": "Can change site",
-      "content_type": 12,
-      "codename": "change_site"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 47,
-    "fields": {
-      "name": "Can delete site",
-      "content_type": 12,
-      "codename": "delete_site"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 48,
-    "fields": {
-      "name": "Can view site",
-      "content_type": 12,
-      "codename": "view_site"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 49,
-    "fields": {
-      "name": "Can publish products",
-      "content_type": 7,
-      "codename": "set_published"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 50,
-    "fields": {
-      "name": "Can change product description",
-      "content_type": 7,
-      "codename": "change_description"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 51,
-    "fields": {
-      "name": "Can change product category",
-      "content_type": 7,
-      "codename": "change_category"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 52,
-    "fields": {
-      "name": "Can watch their own products",
-      "content_type": 7,
-      "codename": "check_products"
-    }
-  },
-  {
-    "model": "auth.group",
-    "pk": 1,
-    "fields": {
-      "name": "product_moderator",
-      "permissions": [
-        51,
-        50,
-        49
-      ]
-    }
-  },
-  {
-    "model": "auth.group",
-    "pk": 2,
-    "fields": {
-      "name": "blog_manager",
-      "permissions": [
-        37,
-        38,
-        39
-      ]
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 1,
-    "fields": {
-      "app_label": "admin",
-      "model": "logentry"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 2,
-    "fields": {
-      "app_label": "auth",
-      "model": "permission"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 3,
-    "fields": {
-      "app_label": "auth",
-      "model": "group"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 4,
-    "fields": {
-      "app_label": "contenttypes",
-      "model": "contenttype"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 5,
-    "fields": {
-      "app_label": "sessions",
-      "model": "session"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 6,
-    "fields": {
-      "app_label": "catalog",
-      "model": "category"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 7,
-    "fields": {
-      "app_label": "catalog",
-      "model": "product"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 8,
-    "fields": {
-      "app_label": "catalog",
-      "model": "contactinf"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 9,
-    "fields": {
-      "app_label": "catalog",
-      "model": "version"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 10,
-    "fields": {
-      "app_label": "blog",
-      "model": "article"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 11,
-    "fields": {
-      "app_label": "users",
-      "model": "user"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 12,
-    "fields": {
-      "app_label": "sites",
-      "model": "site"
-    }
-  },
-  {
-    "model": "sessions.session",
-    "pk": "0cxny1kvnnjjkwlafpqqma5qxjciskse",
-    "fields": {
-      "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6TmDtesPDiBbipMKcXcSKQW0M_PemwVclxrWkecwJXZhAOz0CwnjM7fdpAe2e-ext2WeiO8JP-zgt57y63q0fwcVR93WZBT5QkJ7Y4QVRmWnJWWNFlVJ0UgBXiWrHDgAKEIn7WUxeI6uqI2xzxftgDcd:1qbbK4:hbOZL0wmtZgbvm8kqIPV8gCwEKhQGQYBsKVYRqQeY3k",
-      "expire_date": "2023-09-14T06:38:32.867Z"
-    }
-  },
-  {
-    "model": "sessions.session",
-    "pk": "a04lq7bf68dhf0avsh4pne9hh1eskmie",
-    "fields": {
-      "session_data": ".eJxVjDsOwjAQBe_iGln-e0NJzxmsXX9wANlSnFSIu0OkFNC-mXkvFnBba9hGXsKc2JlpxU6_I2F85LaTdMd26zz2ti4z8V3hBx382lN-Xg7376DiqN-6EHqK2qPOKiOgcxBtmgwWgYqkhezIGiNSsUpIAvLGaU8woUMFktj7AyqIOFw:1qbb5s:UEHcYJNyNUkaY5t7RQB2ax-4kP5FtOniEqIDctXyy8o",
-      "expire_date": "2023-09-14T06:23:52.212Z"
-    }
-  },
-  {
     "model": "catalog.category",
     "pk": 1,
     "fields": {
@@ -633,67 +29,74 @@
     "fields": {
       "fullname": "Каптан Дмитрий Алексеевич",
       "email": "dima.captan@yandex.ru",
-      "phone": "+7(906)645",
+      "phone": "+7(906)645-14-82",
       "address": "Улица уличная"
     }
   },
   {
-    "model": "blog.article",
-    "pk": 1,
-    "fields": {
-      "title": "Создание сайта новичку",
-      "slug": "sozdanie-sajta-novichku",
-      "body": "Сегодня интернет стал неотъемлемой частью нашей жизни, и владение виртуальным пространством стало ключевым для успешных бизнесов, личных проектов и творческих идей. Создание собственного веб-сайта стало не только доступным, но и важным шагом на пути к достижению ваших целей. Давайте рассмотрим этапы создания сайта, которые помогут вам воплотить вашу концепцию в виртуальной реальности.\r\n\r\n1. Определение Целей и Аудитории\r\n\r\nПеред тем как приступить к созданию сайта, определитесь с целями, которые вы хотите достичь. Это может быть продажа товаров, предоставление информации, создание портфолио и многое другое. Кроме того, выясните, кто ваша целевая аудитория: возраст, интересы, местоположение. Это поможет вам адаптировать контент и дизайн под ваших будущих пользователей.\r\n\r\n2. Выбор Платформы и Технологий\r\n\r\nСуществует множество платформ и инструментов для создания сайтов, таких как WordPress, Joomla, Django, и многие другие. Выберите ту, которая наилучшим образом соответствует вашим целям и уровню технической подготовки. Решите, нужен ли вам статический или динамический сайт, а также какие технологии (HTML, CSS, JavaScript, базы данных и др.) будут использоваться.\r\n\r\n3. Проектирование Дизайна и Опыта Пользователя\r\n\r\nДизайн вашего сайта играет ключевую роль в том, как пользователи будут воспринимать информацию и взаимодействовать с контентом. Создайте эстетичный и интуитивно понятный дизайн, который подчеркнет ваш бренд и обеспечит удобство использования. Задумайтесь о структуре сайта, разделении на страницы и навигации.\r\n\r\n4. Разработка и Контент\r\n\r\nНа этом этапе вы приступите к непосредственной разработке сайта. Создайте шаблоны, добавьте контент, изображения и другие мультимедийные элементы. Обратите внимание на оптимизацию для быстрой загрузки страниц, а также на адаптивный дизайн для корректного отображения на различных устройствах.\r\n\r\n5. Тестирование и Оптимизация\r\n\r\nПеред запуском сайта проведите тщательное тестирование на разных браузерах и устройствах, чтобы убедиться, что всё работает корректно. Оптимизируйте загрузку страниц, исправьте ошибки и обеспечьте безопасность данных пользователей.\r\n\r\n6. Запуск и Продвижение\r\n\r\nПосле успешного тестирования вы готовы запустить ваш сайт в интернете. Зарегистрируйте доменное имя и выберите хостинг. После запуска начните продвижение сайта через социальные сети, поисковые системы и другие маркетинговые методы.\r\n\r\n7. Поддержка и Обратная Связь\r\n\r\nСоздание сайта - это долгосрочный процесс. Поддерживайте сайт в актуальном состоянии, обновляйте контент и отвечайте на обратную связь пользователей. Это поможет сохранить интерес вашей аудитории и улучшить опыт пользователей.\r\n\r\nСоздание сайта - это шанс не только предоставить информацию или продукты, но и поделиться своим видением и идеями с миром. Следуя этим этапам, вы сможете создать сайт, который будет отражать вашу уникальность и достигать поставленных целей.",
-      "preview": "blog/blog_deffault.jpg",
-      "created_at": "2023-08-28T12:45:37.773Z",
-      "is_published": true,
-      "views_counter": 121
-    }
-  },
-  {
-    "model": "blog.article",
-    "pk": 2,
-    "fields": {
-      "title": "Создание логотипа новичку",
-      "slug": "sozdanie-logotipa-novichku",
-      "body": "Логотип – это лицо вашего бренда, символ, который моментально вызывает ассоциации и олицетворяет вас перед миром. Создание уникального логотипа – это не только процесс дизайна, но и возможность передать ценности и эмоции вашего бренда. Давайте рассмотрим этапы создания логотипа, которые помогут вам визуализировать суть вашей компании.\r\n\r\n1. Определение Брендовых Ценностей\r\n\r\nПрежде чем приступить к созданию логотипа, определите, какие ценности и идеи вы хотите передать своим клиентам. Логотип должен быть способом выразить вашу уникальность, миссию и то, что вы представляете.\r\n\r\n2. Исследование Конкурентов и Аудитории\r\n\r\nИзучите логотипы конкурентов, чтобы понять, какие дизайнерские элементы популярны в вашей индустрии. Также выясните, что привлекает вашу целевую аудиторию. Это поможет вам создать логотип, который будет актуальным и интересным для ваших клиентов.\r\n\r\n3. Создание Концепции Дизайна\r\n\r\nОпределите, какие символы, цвета и формы наилучшим образом будут соответствовать вашему бренду. Логотип может быть абстрактным или содержать конкретные изображения, важно, чтобы он отражал суть вашего бренда.\r\n\r\n4. Разработка и Творчество\r\n\r\nНа этом этапе приступьте к созданию самого логотипа. Играйте с цветами, формами и шрифтами, чтобы найти оптимальное сочетание. Старайтесь сделать логотип читаемым, как в больших, так и в маленьких размерах.\r\n\r\n5. Тестирование и Оценка\r\n\r\nПрежде чем окончательно решиться, покажите логотип вашим коллегам или друзьям для получения обратной связи. Оцените, как он вызывает эмоции и как хорошо он сочетается с ценностями вашего бренда.\r\n\r\n6. Финальная Версия и Адаптация\r\n\r\nПосле тщательной оценки внесите необходимые коррективы и создайте финальную версию логотипа. Удостоверьтесь, что он будет хорошо смотреться на различных материалах, таких как бизнес-карты, веб-сайт, рекламные материалы и т.д.\r\n\r\n7. Продвижение и Использование\r\n\r\nЗапустите ваш новый логотип в действие! Используйте его на всех платформах, ваших веб-сайтах и социальных сетях. Логотип станет ключевым элементом вашей визуальной идентичности, а правильное использование поможет укрепить бренд в глазах клиентов.\r\n\r\n8. Эволюция и Развитие\r\n\r\nЛоготип может меняться вместе с вашей компанией. Важно быть готовыми к эволюции дизайна в будущем, сохраняя при этом узнаваемость и ценности бренда.\r\n\r\nСоздание логотипа – это искусство, способное передать вашу уникальность и вдохновить других. От идеи до финальной версии, каждый этап важен для создания логотипа, который будет вашей визуальной визитной карточкой в виртуальном мире.",
-      "preview": "blog/lg.jpg",
-      "created_at": "2023-08-28T12:45:37.773Z",
-      "is_published": true,
-      "views_counter": 112
-    }
-  },
-  {
-    "model": "blog.article",
-    "pk": 3,
-    "fields": {
-      "title": "WRONG NAME",
-      "slug": "wrong-name",
-      "body": "WRONG DESCRIPTION",
-      "preview": "blog/blog_deffault.jpg",
-      "created_at": "2023-08-28T12:45:37.773Z",
-      "is_published": false,
-      "views_counter": 3
-    }
-  },
-  {
     "model": "users.user",
-    "pk": 33,
+    "pk": 36,
     "fields": {
-      "password": "pbkdf2_sha256$600000$LuKpa4BcYj9ZkA6wQszKtX$i2jxEWDGfOA+s5lNiUsaG2Www02L/K9A/MCAox52eXs=",
-      "last_login": "2023-08-31T06:38:32.864Z",
+      "password": "pbkdf2_sha256$600000$SgiCc9dkk2QfmbsyPwicge$gs00ExW3ksyroaD103CtjG4zqOlZ5hlrIXMiI3LisFY=",
+      "last_login": "2023-09-02T13:14:23.063Z",
       "is_superuser": true,
       "first_name": "Admin",
       "last_name": "Admin",
       "is_staff": true,
       "is_active": true,
-      "date_joined": "2023-08-31T06:38:23.446Z",
+      "date_joined": "2023-09-02T11:42:37Z",
       "email": "admin@yandex.ru",
       "phone": "89999999999",
       "country": "Russian",
       "profile_img": "",
-      "groups": [],
-      "user_permissions": []
+      "groups": [
+        1,
+        2,
+        3
+      ],
+      "user_permissions": [
+        39
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 1,
+    "fields": {
+      "name": "product_moderator",
+      "permissions": [
+        51,
+        50,
+        26,
+        27,
+        49
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 2,
+    "fields": {
+      "name": "blog_manager",
+      "permissions": [
+        37,
+        38,
+        39
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "pk": 3,
+    "fields": {
+      "name": "seller",
+      "permissions": [
+        25,
+        26,
+        52,
+        27,
+        28
+      ]
     }
   }
 ]
