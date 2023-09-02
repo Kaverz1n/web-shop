@@ -42,7 +42,7 @@
                                     <div style="display: flex; justify-content: space-between;">
                                         <p><b>версия</b>: {{ version.number }}</p>
                                         {% if version.is_current %}
-                                        <p class="text-success">ПОСЛЕДНЯЯ</p>
+                                            <p class="text-success">ПОСЛЕДНЯЯ</p>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -56,7 +56,15 @@
                             <div class="card-body bg-light">
                                 <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
                                 <p class="card-text">{{ object.description|slice:":100" }}...</p>
+                                <p>СТАТУС: <b class="text-success">ОПУБЛИКОВАННО!</b></p>
                                 <a href="{% url 'catalog:product_detail' object.pk 0 %}" class="btn btn-success">ПЕРЕЙТИ</a>
+                                {% if object.user.pk == user.pk %}
+                                    <hr>
+                                    <a href="{% url 'catalog:product_update' object.pk %}"
+                                       class="btn btn-outline-primary">Обновить</a>
+                                    <a href="{% url 'catalog:product_delete' object.pk %}"
+                                       class="btn btn-outline-danger">Удалить</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
