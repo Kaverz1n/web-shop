@@ -25,7 +25,6 @@
                     <div class="card-body mb-2">
                         {% csrf_token %}
                         {{ form|crispy }}
-
                         {% if object %}
                             <button type="submit" class="btn btn-primary mt-5">ОБНОВИТЬ ТОВАР</button>
                         {% else %}
@@ -41,10 +40,10 @@
                         <div class="card-body">
                             {{ formset.management_form }}
                             {% for form in formset.forms %}
-                            {{ form|crispy}}
-                            {% if not forloop.last %}
-                                <hr>
-                            {% endif %}
+                                {{ form|crispy}}
+                                {% if not forloop.last %}
+                                    <hr>
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </div>
