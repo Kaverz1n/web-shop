@@ -6,6 +6,15 @@
     <h2 class="text-center mt-3 mb-5">MRROBOT!</h2>
 </div>
 <div class="container">
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item"><a class="btn btn-dark" href="{% url 'catalog:index' %}">Все</a></li>
+        {% for category in categories %}
+            <li class="list-group-item"><a class="btn btn-outline-dark"
+                                           href="{% url 'catalog:product_category' category.pk %}">
+                {{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <hr>
     <div class="row">
         {% if user|has_group:"product_moderator" %}
             <h1 class="text-center">НА МОДЕРАЦИИ</h1>
@@ -43,12 +52,13 @@
                                 <div class="card-body bg-light">
                                     <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
                                     <p class="card-text">{{ object.description|slice:":100" }}...</p>
-                                    <a href="{% url 'catalog:product_detail' object.pk version.pk%}" class="btn btn-success">ПЕРЕЙТИ</a>
+                                    <a href="{% url 'catalog:product_detail' object.pk version.pk%}"
+                                       class="btn btn-success">ПЕРЕЙТИ</a>
                                     <hr>
                                     <div style="display: flex; justify-content: space-between;">
                                         <p><b>версия</b>: {{ version.number }}</p>
                                         {% if version.is_current %}
-                                        <p class="text-success">ПОСЛЕДНЯЯ</p>
+                                            <p class="text-success">ПОСЛЕДНЯЯ</p>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -62,7 +72,8 @@
                             <div class="card-body bg-light">
                                 <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
                                 <p class="card-text">{{ object.description|slice:":100" }}...</p>
-                                <a href="{% url 'catalog:product_detail' object.pk 0 %}" class="btn btn-success">ПЕРЕЙТИ</a>
+                                <a href="{% url 'catalog:product_detail' object.pk 0 %}"
+                                   class="btn btn-success">ПЕРЕЙТИ</a>
                             </div>
                         </div>
                     </div>

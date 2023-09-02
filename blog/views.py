@@ -1,5 +1,7 @@
+from typing import Any
+
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.db.models import QuerySet
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic import (
@@ -9,7 +11,7 @@ from pytils.translit import slugify
 
 from blog.forms import ArticleForm
 from blog.models import Article
-from blog.utils import send_email_100_view
+from blog.services import send_email_100_view
 
 
 class ArticleListView(ListView):
@@ -19,7 +21,7 @@ class ArticleListView(ListView):
     model = Article
     ordering = ('created_at',)
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Статьи'
         return context
@@ -37,11 +39,11 @@ class ArticleDetailView(DetailView):
         self.object.save()
 
         if self.object.views_counter == 100:
-            send_email_100_view('email@yandex.ru', self.object.title)
+            send_email_100_view(settings.EMAIL_HOST_USER, self.object.title)
 
         return self.object
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['title'] = f'Статья {self.object.title}'
         return context
@@ -64,7 +66,7 @@ class ArticleCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
 
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Создание статьи'
         return context
@@ -75,7 +77,7 @@ class ArticleUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     Класс для отображения страницы обновления статьи
     '''
     model = Article
-    permission_required = 'blog.add_article'
+    permission_required = 'blog.change_article'
     form_class = ArticleForm
 
     def form_valid(self, form) -> HttpResponse:
@@ -89,7 +91,7 @@ class ArticleUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     def get_success_url(self) -> HttpResponse:
         return reverse('blog:article', args=[self.kwargs.get('pk')])
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['title'] = f'Редактирование статьи {self.object.title}'
         return context
@@ -100,10 +102,10 @@ class ArticleDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
     Класс для отображения страницы удаления статьи
     '''
     model = Article
-    permission_required = 'blog.add_article'
+    permission_required = 'blog.delete_article'
     success_url = reverse_lazy('blog:view')
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['title'] = f'Удаление статьи {self.object.title}'
         return context

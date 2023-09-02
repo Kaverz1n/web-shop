@@ -1,6 +1,9 @@
 from typing import Any
 
+from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.models import Group
+from django.db.models import QuerySet
 from django.forms import inlineformset_factory
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
@@ -9,6 +12,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from catalog.forms import ProductForm, VersionForm, ModeratorProductForm
 from catalog.models import Product, ContactInf, Version
+from catalog.services import get_categories, get_category_by_pk
+from users.models import User
 
 
 class ProductListView(ListView):
@@ -20,12 +25,22 @@ class ProductListView(ListView):
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Главная страница'
-
-        last_five_products = Product.objects.order_by('-pk')[:5]
-        for product in last_five_products:
-            print(f'Товар {product.name} с ценой {product.price}р')
+        context['categories'] = get_categories()
 
         return context
+
+
+class CategoryProductListView(ProductListView):
+    '''
+    Класс для отображения продуктов на главной странице по категориям
+    '''
+
+    def get_queryset(self, *args, **kwargs) -> QuerySet:
+        queryset = super().get_queryset(*args, **kwargs)
+        category = get_category_by_pk(self.kwargs.get('category_pk'))
+        queryset = queryset.filter(category=category)
+
+        return queryset
 
 
 class ProductDetailView(DetailView):
@@ -34,7 +49,7 @@ class ProductDetailView(DetailView):
     '''
     model = Product
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         version_pk = self.kwargs.get('version_pk')
 
@@ -54,9 +69,9 @@ class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
     model = Product
     form_class = ProductForm
     permission_required = 'catalog.add_product'
-    success_url = reverse_lazy('catalog:index')
+    success_url = reverse_lazy('catalog:myproducts')
 
-    def form_valid(self, form):
+    def form_valid(self, form) -> HttpResponse:
         if form.is_valid():
             self.object = form.save()
             self.object.user = self.request.user
@@ -64,22 +79,28 @@ class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
 
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Созданние продукта'
         return context
 
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     '''
     Класс для обновления нового продукта в интернет-магазине
     '''
     model = Product
     form_class = ProductForm
+    permission_required = 'catalog.change_product'
 
-    def dispatch(self, request, *args, **kwargs):
+    def __get_user_and_group(self) -> (User, Group):
         user = self.request.user
         group = user.groups.filter(name='product_moderator')
+
+        return user, group
+
+    def dispatch(self, request, *args, **kwargs) -> HttpResponse:
+        user, group = self.__get_user_and_group()
 
         if self.get_object().user.pk != user.pk and not group:
             return redirect('catalog:index')
@@ -88,14 +109,14 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
         return super().dispatch(request, *args, **kwargs)
 
-    def get_form_class(self):
-        user = self.request.user
-        group = user.groups.filter(name='product_moderator')
+    def get_form_class(self) -> forms:
+        user, group = self.__get_user_and_group()
+
         if group:
             return ModeratorProductForm
         return self.form_class
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         VersionFormset = inlineformset_factory(Product, Version, form=VersionForm, extra=1)
 
@@ -108,11 +129,10 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
         return context
 
-    def form_valid(self, form):
+    def form_valid(self, form) -> HttpResponse:
         context = self.get_context_data()
         formset = context['formset']
-        user = self.request.user
-        group = user.groups.filter(name='product_moderator')
+        user, group = self.__get_user_and_group()
 
         if form.is_valid() and group:
             form.save()
@@ -129,9 +149,8 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
         return self.render_to_response(context)
 
-    def get_success_url(self):
-        user = self.request.user
-        group = user.groups.filter(name='product_moderator')
+    def get_success_url(self) -> str:
+        user, group = self.__get_user_and_group()
 
         if group:
             return reverse('catalog:index')
@@ -139,14 +158,15 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         return reverse('catalog:myproducts')
 
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     '''
     Класс для удаления продукта
     '''
     model = Product
     success_url = reverse_lazy('catalog:index')
+    permission_required = 'catalog.delete_product'
 
-    def dispatch(self, request, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs) -> HttpResponse:
         user = self.request.user
         group = user.groups.filter(name='product_moderator')
 
@@ -157,7 +177,7 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
 
         return super().dispatch(request, *args, **kwargs)
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['title'] = f'Удаление продукта {self.object.name}'
         return context
@@ -182,18 +202,21 @@ class ContactInfListView(ListView):
 
         return redirect('catalog:contacts')
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['title'] = 'Контактная информация'
         return context
 
 
-class UserProductListView(PermissionRequiredMixin, ListView):
+class UserProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    '''
+    Класс для отображения продуктов, созданных пользователем
+    '''
     model = Product
     permission_required = 'catalog.check_products'
     template_name = 'catalog/product_user.html'
 
-    def get_queryset(self, *args, **kwargs):
+    def get_queryset(self, *args, **kwargs) -> QuerySet:
         queryset = super().get_queryset(*args, **kwargs)
         queryset = queryset.filter(user=self.request.user)
         return queryset

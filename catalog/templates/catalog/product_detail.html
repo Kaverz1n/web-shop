@@ -16,13 +16,6 @@
                 <p>Название версии: <b>{{ version.name }}</b></p>
             {% endif %}
             <p>Продавец: <b>{{ object.user }}</b></p>
-            {% if object.user.pk == user.pk %}
-                <hr>
-                <a href="{% url 'catalog:product_update' object.pk %}"
-                   class="btn btn-outline-primary">Обновить</a>
-                <a href="{% url 'catalog:product_delete' object.pk %}"
-                   class="btn btn-outline-danger">Удалить</a>
-            {% endif %}
         </div>
     </div>
 </div>

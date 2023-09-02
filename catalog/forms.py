@@ -1,7 +1,7 @@
 from django import forms
 
 from catalog.models import Product, Version
-from catalog.utils import get_wrong_words
+from catalog.services import get_wrong_words
 
 WRONG_WORDS = get_wrong_words()
 
@@ -13,20 +13,20 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        exclude = ('created_at', 'last_change', 'user', 'is_published')
+        exclude = ('created_at', 'last_change', 'user', 'is_published',)
 
-    def __clean_inappropriate_words(self, cleaned_data):
+    def __clean_inappropriate_words(self, cleaned_data) -> None:
         for word in WRONG_WORDS:
             if word.lower().strip() in cleaned_data.lower():
                 raise forms.ValidationError(f'Слово {word} запрещено указывать в названии товара!')
 
-    def clean_name(self):
+    def clean_name(self) -> str:
         cleaned_data = self.cleaned_data['name']
         self.__clean_inappropriate_words(cleaned_data)
 
         return cleaned_data
 
-    def clean_description(self):
+    def clean_description(self) -> str:
         cleaned_data = self.cleaned_data['description']
         self.__clean_inappropriate_words(cleaned_data)
 
@@ -43,7 +43,7 @@ class VersionForm(forms.ModelForm):
         model = Version
         fields = '__all__'
 
-    def clean(self):
+    def clean(self) -> str:
         cleaned_data = super().clean()
         clean_is_current = cleaned_data['is_current']
 
@@ -66,5 +66,4 @@ class ModeratorProductForm(ProductForm):
 
     class Meta:
         model = Product
-        fields = ('description', 'category', 'is_published')
-
+        fields = ('description', 'category', 'is_published',)
