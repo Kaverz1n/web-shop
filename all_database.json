@@ -1,62 +1,470 @@
 [
   {
-    "model": "catalog.category",
+    "model": "auth.permission",
     "pk": 1,
     "fields": {
-      "name": "Создание сайта",
-      "description": "Создадим сайт"
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
     }
   },
   {
-    "model": "catalog.category",
+    "model": "auth.permission",
     "pk": 2,
     "fields": {
-      "name": "Создание логотипа",
-      "description": "Создадим логотип"
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
     }
   },
   {
-    "model": "catalog.category",
+    "model": "auth.permission",
     "pk": 3,
     "fields": {
-      "name": "Создание мобильного приложения",
-      "description": "Создание мобильного приложения: Ваш путь к цифровому величию!\r\n\r\nПревратите свои инновационные идеи в реальность с нашим эксклюзивным предложением по разработке мобильных приложений. Независимо от того, является ли вашей целью улучшение бизнес-процессов, расширение клиентской базы или просто создание уникального пользовательского опыта, наши опытные разработчики готовы превратить ваши мечты в функциональное и элегантное мобильное приложение.\r\n\r\nЧто вас ждет:\r\n📱 Пользовательский опыт будущего: Мы специализируемся на создании интуитивно понятных интерфейсов, которые покоряют пользователей с первого касания.\r\n🚀 Технологии нового поколения: Наша команда следит за последними трендами в разработке приложений, чтобы обеспечить вашему продукту преимущество на рынке.\r\n📊 Полный цикл разработки: Мы заботимся о каждом этапе, начиная от концепции и дизайна, до разработки, тестирования и запуска в App Store и Google Play.\r\n💡 Индивидуальный подход: Мы понимаем, что каждый проект уникален. Наша команда тесно взаимодействует с вами, чтобы полностью осознать ваши потребности и достичь результата, который превосходит ваши ожидания.\r\n\r\nНе упустите шанс преобразовать ваше видение в мобильную реальность! Свяжитесь с нами сегодня, чтобы обсудить ваш проект и начать наше захватывающее путешествие к успеху.\""
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
     }
   },
   {
-    "model": "catalog.contactinf",
-    "pk": 1,
+    "model": "auth.permission",
+    "pk": 4,
     "fields": {
-      "fullname": "Каптан Дмитрий Алексеевич",
-      "email": "dima.captan@yandex.ru",
-      "phone": "+7(906)645-14-82",
-      "address": "Улица уличная"
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
     }
   },
   {
-    "model": "users.user",
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 4,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 4,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 4,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 4,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 5,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 5,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 5,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 5,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add Категория",
+      "content_type": 6,
+      "codename": "add_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change Категория",
+      "content_type": 6,
+      "codename": "change_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete Категория",
+      "content_type": 6,
+      "codename": "delete_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view Категория",
+      "content_type": 6,
+      "codename": "view_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add Товар",
+      "content_type": 7,
+      "codename": "add_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change Товар",
+      "content_type": 7,
+      "codename": "change_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete Товар",
+      "content_type": 7,
+      "codename": "delete_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view Товар",
+      "content_type": 7,
+      "codename": "view_product"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add Контактная информация",
+      "content_type": 8,
+      "codename": "add_contactinf"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change Контактная информация",
+      "content_type": 8,
+      "codename": "change_contactinf"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete Контактная информация",
+      "content_type": 8,
+      "codename": "delete_contactinf"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view Контактная информация",
+      "content_type": 8,
+      "codename": "view_contactinf"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add Версия продукта",
+      "content_type": 9,
+      "codename": "add_version"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change Версия продукта",
+      "content_type": 9,
+      "codename": "change_version"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete Версия продукта",
+      "content_type": 9,
+      "codename": "delete_version"
+    }
+  },
+  {
+    "model": "auth.permission",
     "pk": 36,
     "fields": {
-      "password": "pbkdf2_sha256$600000$SgiCc9dkk2QfmbsyPwicge$gs00ExW3ksyroaD103CtjG4zqOlZ5hlrIXMiI3LisFY=",
-      "last_login": "2023-09-02T13:14:23.063Z",
-      "is_superuser": true,
-      "first_name": "Admin",
-      "last_name": "Admin",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2023-09-02T11:42:37Z",
-      "email": "admin@yandex.ru",
-      "phone": "89999999999",
-      "country": "Russian",
-      "profile_img": "",
-      "groups": [
-        1,
-        2,
-        3
-      ],
-      "user_permissions": [
-        39
-      ]
+      "name": "Can view Версия продукта",
+      "content_type": 9,
+      "codename": "view_version"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add статья",
+      "content_type": 10,
+      "codename": "add_article"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change статья",
+      "content_type": 10,
+      "codename": "change_article"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete статья",
+      "content_type": 10,
+      "codename": "delete_article"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view статья",
+      "content_type": 10,
+      "codename": "view_article"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 11,
+      "codename": "add_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 11,
+      "codename": "change_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 11,
+      "codename": "delete_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 11,
+      "codename": "view_user"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add site",
+      "content_type": 12,
+      "codename": "add_site"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change site",
+      "content_type": 12,
+      "codename": "change_site"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete site",
+      "content_type": 12,
+      "codename": "delete_site"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view site",
+      "content_type": 12,
+      "codename": "view_site"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can publish products",
+      "content_type": 7,
+      "codename": "set_published"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change product description",
+      "content_type": 7,
+      "codename": "change_description"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can change product category",
+      "content_type": 7,
+      "codename": "change_category"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can watch their own products",
+      "content_type": 7,
+      "codename": "check_products"
     }
   },
   {
@@ -97,6 +505,214 @@
         27,
         28
       ]
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "catalog",
+      "model": "category"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "catalog",
+      "model": "product"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "catalog",
+      "model": "contactinf"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "catalog",
+      "model": "version"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "blog",
+      "model": "article"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "app_label": "users",
+      "model": "user"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "app_label": "sites",
+      "model": "site"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "0cxny1kvnnjjkwlafpqqma5qxjciskse",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6TmDtesPDiBbipMKcXcSKQW0M_PemwVclxrWkecwJXZhAOz0CwnjM7fdpAe2e-ext2WeiO8JP-zgt57y63q0fwcVR93WZBT5QkJ7Y4QVRmWnJWWNFlVJ0UgBXiWrHDgAKEIn7WUxeI6uqI2xzxftgDcd:1qbbK4:hbOZL0wmtZgbvm8kqIPV8gCwEKhQGQYBsKVYRqQeY3k",
+      "expire_date": "2023-09-14T06:38:32.867Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "5db5zuls00prljjq19qoypglwpt78vfu",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6TmDtesPDiBbipMKcXcSKQW0M_PemwVclxrWkecwJXZhAOz0CwnjM7fdpAe2e-ext2WeiO8JP-zgt57y63q0fwcVR93WZBT5QkJ7Y4QVRmWnJWWNFlVJ0UgBXiWrHDgAKEIn7WUxeI6uqI2xzxftgDcd:1qbbdK:oDFM0s4WSOKsMuqa00FfhomxkTyg27c2shCYW8Z0Qbw",
+      "expire_date": "2023-09-14T06:58:26.651Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "a04lq7bf68dhf0avsh4pne9hh1eskmie",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGln-e0NJzxmsXX9wANlSnFSIu0OkFNC-mXkvFnBba9hGXsKc2JlpxU6_I2F85LaTdMd26zz2ti4z8V3hBx382lN-Xg7376DiqN-6EHqK2qPOKiOgcxBtmgwWgYqkhezIGiNSsUpIAvLGaU8woUMFktj7AyqIOFw:1qbb5s:UEHcYJNyNUkaY5t7RQB2ax-4kP5FtOniEqIDctXyy8o",
+      "expire_date": "2023-09-14T06:23:52.212Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "bgxlicpidvfe8i44yydp725htqdpllmc",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGllefzElfc5grb1rHECxlE-FuDtESgHtm5n3Egm3taVt4TmNJC7CanH6HTOWB087oTtOty5Ln9Z5zHJX5EEXOXTi5_Vw_w4aLu1bG3DBAHBlNiWctbNAnpTTkMG4Cl4HhOg8BlIqoqKaOcZiASFrb5x4fwDizjcv:1qcRXC:cDZbAV_9BCwl3KyJsrPVYs-UU5Zr1vaCpAb6t6cu6G8",
+      "expire_date": "2023-09-16T14:23:34.368Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "bkwh0ioziucj2l1yj5mw1sd50pgl4o8x",
+    "fields": {
+      "session_data": ".eJxVjEsOwiAUAO_C2hD-BZfuewbyeI9K1UBS2pXx7oakC93OTObNIhx7iUfPW1yJXZl27PILE-Az12HoAfXeOLa6b2viI-Gn7XxulF-3s_0bFOhlfBOSISOMsSpIJQRYVFZKSdmBQli0Qx1sDs47kFoJPUmlJ0RawHtr2OcL6t43Lg:1qcRYB:vimKgVcVT978OfnBEs8Helv_baSZomuAjybFFGzqn1U",
+      "expire_date": "2023-09-16T14:24:35.403Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "cx8gx9g7mda8ociam3sggxp65y1vp66a",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGlm2F_8o6TmDtesPDiBbipMKcXcSKQW0M_PemwVclxrWkecwJXZhAOz0CwnjM7fdpAe2e-ext2WeiO8JP-zgt57y63q0fwcVR93WZBT5QkJ7Y4QVRmWnJWWNFlVJ0UgBXiWrHDgAKEIn7WUxeI6uqI2xzxftgDcd:1qcLzP:cFFzyD8y-2hsEwBd4R94mFISxgBxZuJjtkFOyNFUk1M",
+      "expire_date": "2023-09-16T08:28:19.230Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "mlwhiaobszg55swwqgqcn36rb3y6x8nj",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hAoMAWX7j0DmRlAqoYmpV0Z765NutDtf-_9l4i4rTVuPS9xSuIsrBOn35GQH7ntJN2x3WbJc1uXieSuyIN2eZ1Tfl4O9--gYq_fugRnvbJp5AG0YURCGAIbVzx5ZUCFQmq0jjQUBLYlkDZoimKGoCmL9wcCqDgy:1qciVg:1YgmuD0wbYwbwuA0AEIjiqek_1m_m4hr5ICsRlxzxcg",
+      "expire_date": "2023-09-17T08:31:08.651Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "mqkoitihpdxn7qcypvniht1vtgs9ldkf",
+    "fields": {
+      "session_data": ".eJxVjDsOwjAQBe_iGln-boCSPmewvOs1DiBbipMKcXdkKQW0b2beW4S4byXsndewJHEV1onT74iRnlwHSY9Y701Sq9u6oByKPGiXc0v8uh3u30GJvYw6IYNCmqIy_swXTc4hJ-WzUSpnBADvtQI0zhPbBHrKVntnmcGRRfH5AhtXOCM:1qcOdi:QGZ1zrwernpzvep_6viuNU-97tOg0O8yuaa51q3UZww",
+      "expire_date": "2023-09-16T11:18:06.299Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "n25jnh6l10jay6tf3szrv55vcw7cjuti",
+    "fields": {
+      "session_data": ".eJxVjEsOwiAUAO_C2hD-BZfuewbyeI9K1UBS2pXx7oakC93OTObNIhx7iUfPW1yJXZl27PILE-Az12HoAfXeOLa6b2viI-Gn7XxulF-3s_0bFOhlfBOSISOMsSpIJQRYVFZKSdmBQli0Qx1sDs47kFoJPUmlJ0RawHtr2OcL6t43Lg:1qchAi:C-x9IDpVnMh65kAsuM9sW_ZofWbzcGDmGUM815sjOSU",
+      "expire_date": "2023-09-17T07:05:24.259Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "ooi68partooexledp1zzy8bf8hecd2k9",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2pCCTMu4dO8ZyMBMpWogKe3KeHfbpAvdvvf-f6tA65LD2mQOE6uLcladfmGk9JSyG35QuVedalnmKeo90Ydt-lZZXtej_TvI1PK2BjR-wK7H6Amg94IO0LM5i7PdGHFM3CfsYBD23lg2g3VuQ7SVJAjq8wXf_Td8:1qcRfQ:OzzO-NXCapo2kBqSLX-zJM7leFqTyPO6lFScZ3TBFUk",
+      "expire_date": "2023-09-16T14:32:04.363Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "t83uqwihcvmy1orqne5yq7g1tbaqize2",
+    "fields": {
+      "session_data": ".eJxVjEsOwiAUAO_C2hD-BZfuewbyeI9K1UBS2pXx7oakC93OTObNIhx7iUfPW1yJXZl27PILE-Az12HoAfXeOLa6b2viI-Gn7XxulF-3s_0bFOhlfBOSISOMsSpIJQRYVFZKSdmBQli0Qx1sDs47kFoJPUmlJ0RawHtr2OcL6t43Lg:1qcP43:v3IqoRV2Al9prDMwCpp6Hfk7eC6zVkcg4i-c9s6gKFU",
+      "expire_date": "2023-09-16T11:45:19.723Z"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "name": "Создание сайта",
+      "description": "Создадим сайт"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "name": "Создание логотипа",
+      "description": "Создадим логотип"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "name": "Создание мобильного приложения",
+      "description": "Создание мобильного приложения: Ваш путь к цифровому величию!\r\n\r\nПревратите свои инновационные идеи в реальность с нашим эксклюзивным предложением по разработке мобильных приложений. Независимо от того, является ли вашей целью улучшение бизнес-процессов, расширение клиентской базы или просто создание уникального пользовательского опыта, наши опытные разработчики готовы превратить ваши мечты в функциональное и элегантное мобильное приложение.\r\n\r\nЧто вас ждет:\r\n📱 Пользовательский опыт будущего: Мы специализируемся на создании интуитивно понятных интерфейсов, которые покоряют пользователей с первого касания.\r\n🚀 Технологии нового поколения: Наша команда следит за последними трендами в разработке приложений, чтобы обеспечить вашему продукту преимущество на рынке.\r\n📊 Полный цикл разработки: Мы заботимся о каждом этапе, начиная от концепции и дизайна, до разработки, тестирования и запуска в App Store и Google Play.\r\n💡 Индивидуальный подход: Мы понимаем, что каждый проект уникален. Наша команда тесно взаимодействует с вами, чтобы полностью осознать ваши потребности и достичь результата, который превосходит ваши ожидания.\r\n\r\nНе упустите шанс преобразовать ваше видение в мобильную реальность! Свяжитесь с нами сегодня, чтобы обсудить ваш проект и начать наше захватывающее путешествие к успеху.\""
     }
   }
 ]
