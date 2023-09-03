@@ -36,7 +36,7 @@
                                 <div class="card-body bg-light">
                                     <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
                                     <p class="card-text">{{ object.description|slice:":100" }}...</p>
-                                    <p>СТАТУС: <b class="text-success">ОПУБЛИКОВАННО!</b></p>
+                                    <p>СТАТУС: <b class="text-success">ОПУБЛИКОВАНО!</b></p>
                                     <a href="{% url 'catalog:product_detail' object.pk version.pk%}" class="btn btn-success">ПЕРЕЙТИ</a>
                                     <hr>
                                     <div style="display: flex; justify-content: space-between;">
@@ -56,7 +56,7 @@
                             <div class="card-body bg-light">
                                 <h5 class="card-title">{{ object.name|upper|slice:":25" }}...</h5>
                                 <p class="card-text">{{ object.description|slice:":100" }}...</p>
-                                <p>СТАТУС: <b class="text-success">ОПУБЛИКОВАННО!</b></p>
+                                <p>СТАТУС: <b class="text-success">ОПУБЛИКОВАНО!</b></p>
                                 <a href="{% url 'catalog:product_detail' object.pk 0 %}" class="btn btn-success">ПЕРЕЙТИ</a>
                                 {% if object.user.pk == user.pk %}
                                     <hr>
